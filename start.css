@@ -1,0 +1,41 @@
+#startpage {
+    width: 1500px;
+    height: 700px;
+    border: 1px solid black;
+    margin: auto;
+    position: relative;
+}
+#start {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+#poopingdog {
+    width: 200px;
+    height: 200px;
+    background-color:rgb(123, 100, 70);
+    position: relative;
+    top: 500px;
+    color: white;
+    text-align: center;
+    font-size: 40px;
+    animation: dog 5s ;
+    animation-fill-mode: both;
+    animation-delay: 1s; 
+}
+
+@keyframes dog {
+    0% {
+        left: 0px;
+    }
+    50% {
+        left: 650px;
+    }
+    100% {
+        left: 1500px;
+    }
+}
