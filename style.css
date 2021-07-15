@@ -15,19 +15,16 @@
 }
 
 #player {
-    width: 90px;
-    height: 150px;
-    background-color: white; 
-    position: relative;
-    top: 520px;
-    color: black;
-    text-align: center;
-
-    
+    width: 100px;
+    height: 135px;
+    background-image: url(./gameCharacter.png);
+    background-size: 100px;
+    position: absolute;
+    bottom: 0px; 
 }
 
 .jump {
-    animation: jump 0.5s linear;
+    animation: jump 0.3s linear;
 }
 
 @keyframes jump {
@@ -50,7 +47,7 @@
 }
 
 .caca {
-    display: block;
+    display: none;
     width: 70px;
     height: 70px;
     position: absolute;
@@ -61,66 +58,8 @@
 }
 
 .cacaActive {
-    animation: obstacle 2s infinite linear;
+    animation: obstacle 2s linear;
 }
-
-
-#grosCaca {
-    display: none;
-    position: absolute;
-    bottom: 20px;
-    left: 1400px;
-    width: 90px;
-    height: 90px;
-    background-image: url(./groscaca.png);
-    background-size: 90px; 
-    animation-delay: 0.3s;
-}
-
-.grosCacaActive {
-    animation: obstacletwo 2.5s infinite linear; 
-}
-
-#pipi {
-    display: none;
-    position: absolute;
-    bottom: 15px;
-    left: 1300px;
-    width: 90px;
-    height: 90px;
-    background-image: url(./pipi.png);
-    background-size: 90px;
-    animation-delay: 0.4s;
-}
-.pipiActive {
-    animation: obstacletwo 2s infinite linear; 
-}
-
-#balle {
-    display: none;
-    position: relative;
-    top: 100px;
-    left: 1400px;
-    width: 70px;
-    height: 70px;
-    background-image: url(./balle.png);
-    background-size: 70px;
-    animation-delay: 0.5s;
-}
-.balleActive {
-    animation: obstacletwo 2s infinite linear; 
-}
-
-.cacaDead {
-    animation: isdead 1s linear;
-    animation-fill-mode: forwards;
-}
-
-@keyframes isdead {
-    0% {left : 1420px;}
-    100% {left : 100px}
-}
-
 
 @keyframes obstacle {
     0% {
@@ -133,6 +72,20 @@
 }
 
 
+.grosCaca {
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    left: 1400px;
+    width: 90px;
+    height: 90px;
+    background-image: url(./groscaca.png);
+    background-size: 90px;
+}
+
+.grosCacaActive {
+    animation: obstacletwo 2s linear; 
+}
 
 
 @keyframes obstacletwo {
@@ -140,14 +93,58 @@
         left: 1420px;
     }
     100% {
-        left: 0px;
+        left: -30px;
     }
 }
 
 
+.pipi {
+    display: none;
+    position: absolute;
+    bottom: 15px;
+    left: 1400px;
+    width: 90px;
+    height: 90px;
+    background-image: url(./pipi.png);
+    background-size: 90px;
+}
+.pipiActive {
+    animation: obstacleThree 2.5s linear; 
+}
 
 
+@keyframes obstacleThree {
+    0% {
+        left: 1800px;
+    }
+    100% {
+        left: -30px;
+    }
+}
 
+#balle {
+    display: none;
+    position: relative;
+    top: 100px;
+    left: 1400px;
+    width: 70px;
+    height: 70px;
+    background-image: url(./balle.png);
+    background-size: 70px;
+}
+.balleActive {
+    animation: obstacletwo 2s infinite linear; 
+}
+
+.cacaDead {
+    animation: isdead 1s linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes isdead {
+    0% {left : 1420px;}
+    100% {left : 100px;}
+}
 
 
 #score {

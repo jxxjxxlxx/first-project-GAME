@@ -15,25 +15,50 @@
 }
 
 #poopingdog {
-    width: 200px;
+    width: 230px;
     height: 200px;
-    background-color:rgb(123, 100, 70);
-    position: relative;
-    top: 500px;
-    color: white;
-    text-align: center;
-    font-size: 40px;
+    background-image: url(poopy.png);
+    position: absolute;
+    left:1000px;
+    bottom: 0px;
     animation: dog 5s ;
     animation-fill-mode: both;
-    animation-delay: 1s; 
+    animation-delay: 2s; 
+}
+
+#pipicacadog {
+    width: 230px;
+    height: 200px;
+    background-image: url(pipicaca.png);
+    position: absolute;
+    left: 300px;
+    bottom: 0px;
+    animation: doggy 5s ;
+    animation-fill-mode: both;
+    animation-delay: 2s; 
 }
 
 @keyframes dog {
     0% {
+        left: 250px;
+    }
+    50% {
+        left: 500px;
+    }
+    80% {
+        left: 1000px;
+    }
+    100% {
+        left: 1500px;
+    }
+}
+
+@keyframes doggy {
+    0% {
         left: 0px;
     }
     50% {
-        left: 650px;
+        left: 700px
     }
     100% {
         left: 1500px;

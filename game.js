@@ -1,12 +1,10 @@
 
 const player = document.getElementById("player");
-const caca = document.querySelector(".caca");
-const grosCaca = document.getElementById("grosCaca");
-const pipi = document.getElementById("pipi");
-const balle = document.getElementById("balle");
 const score = document.querySelector("#score");
 const gameOver = document.querySelector("#gameOver");
 const gameContainer = document.querySelector(".game")
+
+
 
 //start / gameover
 
@@ -31,7 +29,7 @@ function jump() {
 
     setTimeout(function (){
         player.classList.remove("jump");
-    }, 500);
+    }, 300);
 }
 }
 
@@ -42,117 +40,162 @@ document.addEventListener("keydown", function (event) {
 
 // function down
 
-//STARTTT
-
-function generateCacas(){
 
 
 
-    // create an interval that will create a caca every 5 seconds
 
+
+//START
+document.addEventListener("keydown", started)
+
+
+function started(start) {
     
-    // generate random obs 
-    //
-     setInterval(() => {
-        
-        const obstacle = document.createElement('div')
-        obstacle.classList.add('caca')
-        obstacle.classList.add('cacaActive')
-        obstacle.style.display ="block"
-        gameContainer.appendChild(obstacle);
-        
-    },5000) 
+    // this function should start the scoreCount interval
+    // call a function to generate cacas 
+    // that function will generate a caca every X amount of time
+    // (interval)
+    // these functions should be called only if 
+    // the space bar and the game state is at false (isStated = false)
+    // if the space bar is pressed 
+    // and the isStarted = false
+    // change it to true
+    
 
-//    if (!isGameover) {
-//        clearInterval(obsControl)
-//    }
+    const generateCacas = () => {
+           
+        
+        
+     
+            
+            const obstacle = document.createElement('div');
+            obstacle.classList.add('caca')
+            obstacle.classList.add('cacaActive')
+            obstacle.style.display ="block";
+            gameContainer.appendChild(obstacle);
+            obstacle.onanimationend = () => {
+                obstacle.remove();
+            }
+   
+
+
+                if (playerScore > 30) {
+                    setTimeout(()=> {
+                    const obstacle = document.createElement("div")
+                    obstacle.classList.add('grosCaca')
+                    obstacle.classList.add('grosCacaActive')
+                    obstacle.style.display ="block";
+                    gameContainer.appendChild(obstacle);
+                    obstacle.onanimationend = () => {
+                        obstacle.remove();
+                    }
+                }, 1000)
+                }
+            
+                if (playerScore > 50) {
+                    setTimeout(()=> {
+                    const obstacle = document.createElement("div")
+                    obstacle.classList.add('pipi')
+                    obstacle.classList.add('pipiActive')
+                    obstacle.style.display ="block";
+                    gameContainer.appendChild(obstacle);
+                    obstacle.onanimationend = () => {
+                        obstacle.remove();
+                    }
+                }, 2000)
+                }
+            
+            
+           
+                
+            }
+     
+    
+
+    if (start.code === "Space" && !isStarted) {
+        // if the game is not started yet
+        // call the interval for the scoreCount
+        
+        isStarted=true
+
+        let cacasInterval = setInterval(generateCacas,2000);
+        interval = setInterval(scoreCount, 200);
+
+    } 
+    
 
 
 }
 
-
-document.addEventListener("keydown", started)
-
-function started(start) {
-    
-    if (start.code == "Space") {
-        caca.style.display = "block"
-        caca.classList.add("cacaActive")
-        
-            // start creating random cacas
-        
-        let playerScore = 0;
-        interval = setInterval(scoreCount, 200);
-    } 
-
-    if (playerScore > 50) {
-        grosCaca.style.display = "block"
-        grosCaca.classList.add("grosCacaActive")
-    } 
-    if (playerScore > 100) {
-        pipi.style.display = "block"
-        pipi.classList.add("pipiActive")
-    }
-    // if (playerScore > 300) {
-    //     balle.style.display = "block"
-    //     balle.classList.add("balleActive")
-    // }
-
-
-
  
-};
 
 
 
+//CHECKING IF STILL ALIVE AND IF NOT GAME OVER
 
 let stillAlive = setInterval(function () {
+    
+
+    const caca = document.querySelector('.caca');
+    const grosCaca = document.querySelector(".grosCaca");
+    const pipi = document.querySelector(".pipi");
 
 
-    // isGameover=true;
-    let playerRect = parseInt(window.getComputedStyle(player).getPropertyValue('top')); //tried the same with getBoundingClientRect didnt work  
-    let cacaRect = parseInt(window.getComputedStyle(caca).getPropertyValue('left'));
-    let grosCacaRect = parseInt(window.getComputedStyle(grosCaca).getPropertyValue('left'));
-    let pipiRect = parseInt(window.getComputedStyle(pipi).getPropertyValue('left'));
+    const obstacles = [caca,grosCaca,pipi].filter(element => element !== null)
+
+    // let playerRect = parseInt(window.getComputedStyle(player).getPropertyValue('top')); 
+    // let cacaRect = parseInt(window.getComputedStyle(caca).getPropertyValue('left'));
+    // let grosCacaRect = parseInt(window.getComputedStyle(grosCaca).getPropertyValue('left'));
+    // let pipiRect = parseInt(window.getComputedStyle(pipi).getPropertyValue('left'));
     // let balle = parseInt(window.getComputedStyle(balle).getPropertyValue('left'))
 
-    if (cacaRect < 60 && cacaRect > 0 && playerRect > 500) {
+    const isDead = function () {
         
         gameOver.style.display = "block";
         caca.classList.add("cacaDead");
         grosCaca.classList.add("cacaDead"); 
-        pipi.classList.add("cacaDead")
-        balle.classList.add("cacaDead")
-         // tous les obstacles
-        clearInterval(interval);
-        playerScore = 0;
-        // console.log("shit")
-        document.removeEventListener("keydown", started) 
-    }
-
-
-    if (grosCacaRect < 80 && grosCacaRect > 0 && playerRect > 500) {
+        pipi.classList.add("cacaDead"); 
+        // balle.classList.add("cacaDead")
         
-        gameOver.style.display = "block";
-        caca.classList.add("cacaDead");
-        grosCaca.classList.add("cacaDead");
-        pipi.classList.add("cacaDead") 
         clearInterval(interval);
-        playerScore = 0;
-        document.removeEventListener("keydown", started) 
-    }
+        clearInterval(cacasInterval);
 
-    if (pipiRect < 80 && pipiRect > 0 && playerRect > 500) {
+        playerScore = 0;
         
-        gameOver.style.display = "block";
-        caca.classList.add("cacaDead");
-        grosCaca.classList.add("cacaDead");
-        pipi.classList.add("cacaDead") 
-        clearInterval(interval);
-        playerScore = 0;
-        document.removeEventListener("keydown", started) 
+        document.removeEventListener("keydown", started)  
+
+    }
+    const rect1 =player.getBoundingClientRect();
+  
+    for(let obstacle of obstacles){
+        const rect2 = obstacle.getBoundingClientRect()
+        console.log(rect2)
+        if (rect1.x < rect2.x + rect2.width &&
+            rect1.x + rect1.width > rect2.x &&
+            rect1.y < rect2.y + rect2.height &&
+            rect1.y + rect1.height > rect2.y) {
+              
+        return isDead()
+         }  
+    
     }
 
+    
+    
+
+
+    // if (cacaRect < 50 && cacaRect > 0 && playerRect > 500) {
+    //     return isDead();
+    // }
+
+    // if (grosCacaRect < 80 && grosCacaRect > 0 && playerRect > 500) {
+    //     return isDead()
+    // }
+
+    // if (pipiRect < 80 && pipiRect > 0 && playerRect > 500) {
+    //     return isDead()
+    // }
+    
     // if (balle < 80 && balle > 0 && playerRect > 200) {
         
     //     gameOver.style.display = "block";
@@ -162,6 +205,9 @@ let stillAlive = setInterval(function () {
     //     clearInterval(interval);
     //     playerScore = 0;
     // }
+
+
+   
     
 }, 100)
 
