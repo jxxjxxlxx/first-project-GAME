@@ -133,7 +133,7 @@ let stillAlive = setInterval(function () {
     const isDead = function () {
         
         gameOver.style.display = "block";
-        var audio = new Audio('ewww.mp4');
+        var audio = new Audio(ewww.mp4);
         audio.play();
         clearInterval(interval);
         clearInterval(cacasInterval);
