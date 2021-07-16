@@ -133,11 +133,8 @@ let stillAlive = setInterval(function () {
     const isDead = function () {
         
         gameOver.style.display = "block";
-        // caca.classList.add("cacaDead");
-        // grosCaca.classList.add("cacaDead"); 
-        // pipi.classList.add("cacaDead"); 
-        // balle.classList.add("cacaDead")
-        
+        var audio = new Audio('/Ewww.mp4');
+        audio.play();
         clearInterval(interval);
         clearInterval(cacasInterval);
 
