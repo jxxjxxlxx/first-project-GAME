@@ -51,23 +51,10 @@ document.addEventListener("keydown", started)
 
 function started(start) {
     
-    // this function should start the scoreCount interval
-    // call a function to generate cacas 
-    // that function will generate a caca every X amount of time
-    // (interval)
-    // these functions should be called only if 
-    // the space bar and the game state is at false (isStated = false)
-    // if the space bar is pressed 
-    // and the isStarted = false
-    // change it to true
-    
 
     const generateCacas = () => {
            
         
-        
-     
-            
             const obstacle = document.createElement('div');
             obstacle.classList.add('caca')
             obstacle.classList.add('cacaActive')
@@ -143,18 +130,12 @@ let stillAlive = setInterval(function () {
 
     const obstacles = [caca,grosCaca,pipi].filter(element => element !== null)
 
-    // let playerRect = parseInt(window.getComputedStyle(player).getPropertyValue('top')); 
-    // let cacaRect = parseInt(window.getComputedStyle(caca).getPropertyValue('left'));
-    // let grosCacaRect = parseInt(window.getComputedStyle(grosCaca).getPropertyValue('left'));
-    // let pipiRect = parseInt(window.getComputedStyle(pipi).getPropertyValue('left'));
-    // let balle = parseInt(window.getComputedStyle(balle).getPropertyValue('left'))
-
     const isDead = function () {
         
         gameOver.style.display = "block";
-        caca.classList.add("cacaDead");
-        grosCaca.classList.add("cacaDead"); 
-        pipi.classList.add("cacaDead"); 
+        // caca.classList.add("cacaDead");
+        // grosCaca.classList.add("cacaDead"); 
+        // pipi.classList.add("cacaDead"); 
         // balle.classList.add("cacaDead")
         
         clearInterval(interval);
@@ -169,7 +150,7 @@ let stillAlive = setInterval(function () {
   
     for(let obstacle of obstacles){
         const rect2 = obstacle.getBoundingClientRect()
-        console.log(rect2)
+        // console.log(rect2)
         if (rect1.x < rect2.x + rect2.width &&
             rect1.x + rect1.width > rect2.x &&
             rect1.y < rect2.y + rect2.height &&
@@ -179,34 +160,6 @@ let stillAlive = setInterval(function () {
          }  
     
     }
-
-    
-    
-
-
-    // if (cacaRect < 50 && cacaRect > 0 && playerRect > 500) {
-    //     return isDead();
-    // }
-
-    // if (grosCacaRect < 80 && grosCacaRect > 0 && playerRect > 500) {
-    //     return isDead()
-    // }
-
-    // if (pipiRect < 80 && pipiRect > 0 && playerRect > 500) {
-    //     return isDead()
-    // }
-    
-    // if (balle < 80 && balle > 0 && playerRect > 200) {
-        
-    //     gameOver.style.display = "block";
-    //     caca.classList.add("cacaDead");
-    //     grosCaca.classList.add("cacaDead"); 
-    //     pipi.classList.add("cacaDead")
-    //     clearInterval(interval);
-    //     playerScore = 0;
-    // }
-
-
    
     
 }, 100)
