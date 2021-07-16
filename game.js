@@ -136,7 +136,6 @@ let stillAlive = setInterval(function () {
         var audio = new Audio('ewww.mp4');
         audio.play();
         clearInterval(interval);
-        clearInterval(cacasInterval);
 
         playerScore = 0;
         
